@@ -1,0 +1,78 @@
+---
+import BrowStrokes from "./BrowStrokes.astro";
+// Contenido editable desde el panel /admin
+import contacto from "../data/contacto.json";
+
+const pasos = [
+  { t: "Escríbeme", d: "Cuéntame qué buscas por WhatsApp o Instagram. Sin compromiso." },
+  { t: "Reservamos tu consulta", d: "Buscamos hueco para vernos, valorar tu caso y diseñar la forma." },
+  { t: "El día de tu cita", d: "Si todo encaja, hacemos el tratamiento. Si no, te lo digo con honestidad." },
+];
+---
+
+<section class="reserva section" id="reservar">
+  <div class="wrap reserva__grid">
+    <div class="reserva__intro">
+      <div class="reserva__mark" aria-hidden="true">
+        <BrowStrokes variant="mark" />
+      </div>
+      <p class="kicker">Reservar</p>
+      <h2>Reservar es fácil.<br />Empieza por un mensaje.</h2>
+      <p class="lead">
+        No hace falta decidir nada hoy. La primera cita es una consulta:
+        miramos tu caso y tú decides con calma.
+      </p>
+      <a href={contacto.booking_url} class="btn btn--solid" target="_blank" rel="noopener">
+        Pedir cita por WhatsApp
+      </a>
+    </div>
+
+    <ol class="reserva__pasos">
+      {pasos.map((p, i) => (
+        <li>
+          <span class="reserva__n">{String(i + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .reserva { background: var(--shell-2); }
+  .reserva__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .reserva__mark { width: 3.25rem; color: var(--rose); margin-bottom: 1.25rem; }
+  .reserva__intro h2 { margin: 1rem 0 1.25rem; }
+  .reserva__intro .btn { margin-top: 2rem; }
+
+  .reserva__pasos { display: grid; gap: 0.5rem; }
+  .reserva__pasos li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .reserva__pasos li:last-child { border-bottom: 1px solid var(--line); }
+  .reserva__n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: var(--step-1);
+    color: var(--rose);
+  }
+  .reserva__pasos h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+  .reserva__pasos p { color: var(--ink-soft); font-size: var(--step--1); }
+
+  @media (max-width: 780px) {
+    .reserva__grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,81 @@
+---
+const facts = [
+  { k: "Semipermanente", v: "Dura entre 12 y 18 meses. Se retoca, no es un tatuaje para toda la vida." },
+  { k: "Pelo a pelo", v: "Trazos finos que imitan el vello real. De cerca no se ve un bloque de color." },
+  { k: "A mano", v: "Con una herramienta manual, sin máquina. Control total del trazo." },
+  { k: "A tu medida", v: "La forma se diseña sobre tu cara antes de empezar, y la apruebas tú." },
+];
+---
+
+<section class="que section" id="que-es">
+  <div class="wrap que__grid">
+    <div class="que__intro">
+      <p class="kicker">Qué es</p>
+      <h2>
+        Rellenar, redefinir<br />
+        y dar forma. Sin que<br />
+        deje de ser tu cara.
+      </h2>
+    </div>
+
+    <div class="que__body">
+      <p>
+        El microblading es una micropigmentación en la que deposito pigmento
+        en la capa más superficial de la piel con trazos muy finos, uno a uno.
+        El resultado imita el vello natural, así que las cejas se ven más
+        pobladas y definidas, pero siguen pareciendo tuyas.
+      </p>
+      <p>
+        Es ideal si tienes zonas sin pelo, cejas claras o poco simétricas, o
+        si simplemente quieres olvidarte del lápiz cada mañana. No es
+        maquillaje: el pigmento está en la piel y aguanta el agua, el sudor
+        y el día a día.
+      </p>
+
+      <dl class="que__facts">
+        {facts.map((f) => (
+          <div class="fact">
+            <dt>{f.k}</dt>
+            <dd>{f.v}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .que { background: var(--shell-2); }
+  .que__grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  .que__intro h2 { color: var(--ink); }
+  .que__body p { margin-bottom: 1.25rem; color: var(--ink-soft); }
+
+  .que__facts {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+  .fact { border-top: 1px solid var(--line); padding-top: 0.9rem; }
+  .fact dt {
+    font-family: var(--serif);
+    font-size: var(--step-1);
+    margin-bottom: 0.35rem;
+  }
+  .fact dd {
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 820px) {
+    .que__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .que__facts { grid-template-columns: 1fr; }
+  }
+</style>

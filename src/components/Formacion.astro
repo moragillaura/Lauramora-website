@@ -1,0 +1,65 @@
+---
+// Contenido editable desde el panel /admin
+import formacion from "../data/formacion.json";
+import contacto from "../data/contacto.json";
+---
+
+<section class="formacion section" id="formacion">
+  <div class="wrap">
+    <div class="formacion__card">
+      <div class="formacion__text">
+        <p class="kicker">{formacion.kicker}</p>
+        <h2>{formacion.titulo}</h2>
+        <p>{formacion.texto}</p>
+      </div>
+
+      <div class="formacion__aside">
+        <ul class="formacion__modos">
+          {formacion.modalidades.map((m) => <li>{m}</li>)}
+        </ul>
+        <a href={contacto.instagram} class="btn btn--solid" target="_blank" rel="noopener">
+          {formacion.cta_texto}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .formacion { background: var(--shell-2); }
+  .formacion__card {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    background:
+      radial-gradient(130% 160% at 0% 0%, color-mix(in srgb, var(--sage) 22%, transparent), transparent 55%),
+      var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px 6px 26px 26px;
+  }
+  .formacion__text h2 { margin: 1rem 0 1rem; font-size: var(--step-2); }
+  .formacion__text p { color: var(--ink-soft); }
+
+  .formacion__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .formacion__modos { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .formacion__modos li {
+    font-size: var(--step--1);
+    letter-spacing: 0.03em;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--shell);
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 780px) {
+    .formacion__card { grid-template-columns: 1fr; align-items: start; }
+  }
+</style>

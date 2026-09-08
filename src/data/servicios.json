@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "t": "Microblading",
+      "d": "Cejas pelo a pelo dibujadas a mano, trazo a trazo. El acabado más natural para rellenar, redefinir y dar forma.",
+      "price": "Consultar",
+      "incluye": "Incluye diseño + retoque a las 6 semanas"
+    },
+    {
+      "t": "Micropigmentación",
+      "d": "Técnicas de micropigmentación adaptadas a cada rostro, para un color duradero y de aspecto natural.",
+      "price": "Consultar",
+      "incluye": "Valoración previa incluida"
+    },
+    {
+      "t": "Tratamientos faciales con diagnóstico",
+      "d": "Limpieza y tratamientos faciales personalizados a partir de un diagnóstico previo de tu piel.",
+      "price": "Consultar",
+      "incluye": "Incluye diagnóstico de la piel"
+    },
+    {
+      "t": "Laminado de cejas",
+      "d": "Peina y fija el vello para unas cejas más pobladas y ordenadas, sin pigmento. Efecto natural.",
+      "price": "Consultar",
+      "incluye": "Resultado de 6 a 8 semanas"
+    },
+    {
+      "t": "Lifting de pestañas",
+      "d": "Eleva y curva tus pestañas naturales desde la raíz, con opción de tinte. Mirada despierta sin extensiones.",
+      "price": "Consultar",
+      "incluye": "Resultado de 6 a 8 semanas"
+    },
+    {
+      "t": "Presoterapia",
+      "d": "Tratamiento corporal que activa la circulación y ayuda a drenar. Disponible en sesiones sueltas o en bono.",
+      "price": "Consultar",
+      "incluye": "Sesiones sueltas o en bono"
+    }
+  ]
+}

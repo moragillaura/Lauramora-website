@@ -1,0 +1,58 @@
+---
+// Contenido editable desde el panel /admin
+import contacto from "../data/contacto.json";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <span class="footer__name">Laura Mora</span>
+      <span class="footer__sub">Estética y micropigmentación · Sevilla</span>
+    </div>
+
+    <nav class="footer__links" aria-label="Enlaces legales">
+      <a href="#que-es" class="tlink">Qué es</a>
+      <a href="#servicios" class="tlink">Servicios</a>
+      <a href="#contacto" class="tlink">Reservar</a>
+      <a href="#aviso-legal" class="tlink">Aviso legal</a>
+    </nav>
+  </div>
+
+  <div class="wrap footer__foot">
+    <p>{contacto.registro_sanitario}</p>
+    <p>© {year} Laura Mora. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--shell-2);
+    padding-block: clamp(2.5rem, 5vw, 4rem) 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer__brand { display: grid; }
+  .footer__name { font-family: var(--serif); font-size: var(--step-2); }
+  .footer__sub { font-size: var(--step--1); color: var(--taupe); letter-spacing: 0.06em; }
+  .footer__links { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: var(--step--1); }
+
+  .footer__foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--taupe);
+  }
+  .footer__foot p { max-width: none; }
+</style>

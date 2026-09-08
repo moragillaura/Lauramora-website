@@ -1,0 +1,133 @@
+---
+import BrowStrokes from "./BrowStrokes.astro";
+import { Image } from "astro:assets";
+
+// Si existe src/assets/laura-hero.(jpg|png|webp|avif) se usa; si no, marco de sustitución.
+const heroImgs = import.meta.glob("../assets/laura-hero.{jpg,jpeg,png,webp,avif}", {
+  eager: true,
+  import: "default",
+});
+const heroImg = Object.values(heroImgs)[0] as any;
+---
+
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div class="hero__lead">
+      <p class="kicker">Estética y micropigmentación · Sevilla</p>
+
+      <div class="hero__mark" aria-hidden="true">
+        <BrowStrokes variant="hero" />
+      </div>
+
+      <h1 class="hero__title">
+        Cejas que parecen<br />
+        tuyas, <span class="serif-italic">trazo a trazo.</span>
+      </h1>
+
+      <p class="lead">
+        Dibujo tus cejas pelo a pelo, a mano, respetando tu forma natural y
+        los rasgos de tu cara. Sin plantillas ni resultados iguales para todas.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#contacto" class="btn btn--solid">Reservar consulta</a>
+        <a href="#proceso" class="btn btn--ghost">Ver cómo trabajo</a>
+      </div>
+
+      <p class="hero__trust">
+        Micropigmentación natural · Especialista en resultados realistas
+      </p>
+    </div>
+
+    <div class="hero__media">
+      <figure class="frame">
+        <div class="frame__img" role="img"
+          aria-label="Retrato de Laura Mora trabajando en su estudio">
+          {heroImg
+            ? <Image src={heroImg} alt="Laura Mora en su estudio" class="frame__photo" widths={[400, 600, 800]} sizes="(max-width: 820px) 380px, 40vw" />
+            : <span class="frame__hint">Foto de Laura / su trabajo</span>}
+        </div>
+        <figcaption>
+          <span class="serif-italic">Laura Mora</span>
+          <span>Técnica en micropigmentación</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: clamp(2.5rem, 1.5rem + 5vw, 5.5rem) clamp(3rem, 7vw, 6rem); }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .hero__mark { width: clamp(160px, 26vw, 260px); margin: 0.5rem 0 1.75rem; }
+
+  .hero__title {
+    font-size: var(--step-4);
+    line-height: 0.98;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.25rem;
+  }
+
+  .hero__trust {
+    margin-top: 1.75rem;
+    font-size: var(--step--1);
+    color: var(--taupe);
+    letter-spacing: 0.01em;
+  }
+
+  /* Framed portrait placeholder */
+  .frame { margin: 0; }
+  .frame__img {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 200px 200px 8px 8px; /* soft arch — echoes a brow */
+    background:
+      radial-gradient(120% 90% at 50% 15%, var(--blush), var(--shell-2) 70%);
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .frame__hint {
+    font-size: var(--step--1);
+    color: var(--taupe);
+    letter-spacing: 0.04em;
+  }
+  .frame__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .frame figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+  .frame figcaption .serif-italic { font-size: var(--step-0); color: var(--ink); }
+
+  @media (max-width: 820px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__media { order: -1; max-width: 380px; }
+    .lead { max-width: none; }
+  }
+</style>

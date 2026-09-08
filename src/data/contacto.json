@@ -1,0 +1,16 @@
+{
+  "whatsapp": "https://wa.me/34603459895",
+  "booking_url": "https://wa.me/34603459895",
+  "instagram": "https://instagram.com/lauramora_microblading",
+  "instagram_handle": "@lauramora_microblading",
+  "telefono_texto": "603 459 895",
+  "direccion_linea1": "Calle de ejemplo, 00",
+  "direccion_linea2": "Sevilla",
+  "horario_dias": "Martes a sábado",
+  "horario_horas": "Con cita previa",
+  "registro_sanitario": "Estudio con registro sanitario · Junta de Andalucía",
+  "map_lat": 37.38859,
+  "map_lng": -5.99534,
+  "map_zoom": 15,
+  "como_llegar_url": "https://www.google.com/maps/search/?api=1&query=37.38859,-5.99534"
+}

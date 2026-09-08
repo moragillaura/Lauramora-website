@@ -1,0 +1,86 @@
+---
+// Contenido editable desde el panel /admin
+import faqData from "../data/faq.json";
+const faqs = faqData.items;
+---
+
+<section class="faq section" id="preguntas">
+  <div class="wrap faq__grid">
+    <header class="faq__head">
+      <p class="kicker">Preguntas frecuentes</p>
+      <h2>Lo que casi<br />todas me preguntan.</h2>
+      <p class="faq__note">
+        ¿Te queda alguna duda? Escríbeme sin compromiso y te respondo yo misma.
+      </p>
+    </header>
+
+    <div class="faq__list">
+      {faqs.map((f, i) => (
+        <details name="faq" open={i === 0}>
+          <summary>
+            <span>{f.q}</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .faq__head { position: sticky; top: 6rem; }
+  .faq__head h2 { margin: 1rem 0 1.25rem; }
+  .faq__note { color: var(--ink-soft); }
+
+  .faq__list { display: grid; }
+  details {
+    border-top: 1px solid var(--line);
+    padding: 0.4rem 0;
+  }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--serif);
+    font-size: var(--step-1);
+    color: var(--ink);
+  }
+  summary::-webkit-details-marker { display: none; }
+  .faq__icon {
+    position: relative;
+    width: 14px; height: 14px;
+    flex: none;
+  }
+  .faq__icon::before,
+  .faq__icon::after {
+    content: "";
+    position: absolute;
+    background: var(--rose);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .faq__icon::before { inset: 6px 0; height: 2px; }        /* horizontal */
+  .faq__icon::after  { inset: 0 6px; width: 2px; }         /* vertical */
+  details[open] .faq__icon::after { opacity: 0; transform: scaleY(0); }
+  details p {
+    padding: 0 0 1.4rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  @media (max-width: 820px) {
+    .faq__grid { grid-template-columns: 1fr; }
+    .faq__head { position: static; }
+  }
+</style>

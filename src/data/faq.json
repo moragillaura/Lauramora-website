@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "q": "¿Duele?",
+      "a": "Es molesto más que doloroso. Uso anestesia tópica antes y durante la sesión, así que la mayoría de clientas lo llevan muy bien. La zona queda algo sensible ese día."
+    },
+    {
+      "q": "¿Cuánto tiempo dura?",
+      "a": "Entre 12 y 18 meses según tu tipo de piel, tu ritmo de vida y el sol. No desaparece de golpe: se va aclarando poco a poco, por eso se recomienda un retoque anual."
+    },
+    {
+      "q": "¿Cómo se ve los primeros días?",
+      "a": "Más intenso y definido de lo que será el resultado final. Durante la cicatrización el color pierde alrededor de un 30–40 % y los trazos se afinan. Verlo oscuro al principio es completamente normal."
+    },
+    {
+      "q": "¿Puedo hacérmelo en cualquier caso?",
+      "a": "No siempre. Durante el embarazo y la lactancia, con diabetes no controlada, tratamientos con ciertos medicamentos o algunas afecciones de la piel no se recomienda. Por eso hacemos una valoración antes: tu seguridad es lo primero."
+    },
+    {
+      "q": "¿Qué cuidados necesita después?",
+      "a": "Mantener la zona limpia y seca los primeros días, aplicar el bálsamo que te doy, y evitar sol, sauna, piscina, sudor intenso y maquillaje sobre las cejas hasta que cicatrice. Te llevas todo por escrito."
+    },
+    {
+      "q": "¿Cuánto se tarda en total?",
+      "a": "La primera cita dura unas dos horas y media, contando el diseño. El retoque posterior es más corto, alrededor de una hora."
+    }
+  ]
+}

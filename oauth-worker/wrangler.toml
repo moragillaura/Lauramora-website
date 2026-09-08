@@ -1,0 +1,15 @@
+# Worker de autenticación para Sveltia CMS (login con GitHub).
+# Desplegar:  npx wrangler deploy
+name = "laura-mora-cms-auth"
+main = "src/index.js"
+compatibility_date = "2023-03-24"
+
+# Dominios autorizados a usar este worker (coma, sin espacios).
+# Pon el dominio final de la web y el de pruebas de Cloudflare Pages.
+# Esto impide que otra web use tu worker para robar tokens.
+[vars]
+ALLOWED_DOMAINS = "lauramora.com,*.pages.dev"
+
+# Los SECRETOS no se escriben aquí. Se cargan una vez con:
+#   npx wrangler secret put GITHUB_CLIENT_ID
+#   npx wrangler secret put GITHUB_CLIENT_SECRET

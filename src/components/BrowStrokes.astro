@@ -1,0 +1,49 @@
+---
+/**
+ * BrowStrokes — the signature motif.
+ * Fine, hand-drawn hair strokes fanned into a brow shape.
+ * Strokes draw themselves in on load (the one motion moment).
+ */
+interface Props {
+  variant?: "hero" | "mark";
+  class?: string;
+}
+const { variant = "hero", class: klass = "" } = Astro.props;
+
+// Each stroke: a gently curved tapered line. Lengths feed the draw animation.
+const strokes = [
+  { d: "M12 78 C 40 64, 92 50, 150 42",  len: 150, delay: 0.05, accent: false },
+  { d: "M18 88 C 52 72, 108 56, 168 47",  len: 162, delay: 0.12, accent: false },
+  { d: "M26 98 C 66 82, 124 63, 186 52",  len: 172, delay: 0.19, accent: true  },
+  { d: "M38 106 C 82 92, 140 71, 202 58", len: 178, delay: 0.26, accent: false },
+  { d: "M54 112 C 100 100, 156 80, 216 66", len: 176, delay: 0.33, accent: false },
+  { d: "M74 116 C 118 108, 172 90, 228 76", len: 168, delay: 0.40, accent: false },
+  { d: "M98 118 C 138 114, 186 100, 238 88", len: 152, delay: 0.47, accent: true  },
+  { d: "M126 118 C 160 118, 200 110, 246 100", len: 130, delay: 0.54, accent: false },
+];
+---
+
+<svg
+  class={`brow brow--${variant} ${klass}`}
+  viewBox="0 0 260 140"
+  fill="none"
+  role="img"
+  aria-label="Trazos de microblading formando una ceja"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  {strokes.map((s) => (
+    <path
+      d={s.d}
+      class="stroke-path"
+      stroke={s.accent ? "var(--rose)" : "currentColor"}
+      stroke-width="1.6"
+      stroke-linecap="round"
+      style={`--len:${s.len}; --delay:${s.delay}s;`}
+    />
+  ))}
+</svg>
+
+<style>
+  .brow { width: 100%; height: auto; color: var(--ink); overflow: visible; }
+  .brow--mark { width: 3.2rem; }
+</style>

@@ -1,0 +1,116 @@
+---
+// Contenido editable desde el panel /admin
+import contacto from "../data/contacto.json";
+import galleryData from "../data/gallery.json";
+const casos = galleryData.items;
+---
+
+<section class="resultados section" id="resultados">
+  <div class="wrap">
+    <header class="resultados__head">
+      <p class="kicker">Resultados</p>
+      <h2>Antes y después,<br />sin filtros.</h2>
+      <p class="resultados__note">
+        Fotos reales de clientas, siempre con su permiso. El acabado que ves es
+        el de la piel ya curada, no el del primer día.
+      </p>
+    </header>
+
+    <div class="gallery">
+      {casos.map((c) => (
+        <figure class="caso">
+          <div class="caso__pair">
+            <div class="caso__img" role="img" aria-label={`Antes: ${c.nombre}`}>
+              {c.before && <img src={c.before} alt={`Antes: ${c.nombre}`} loading="lazy" />}
+              <span class="caso__tag">Antes</span>
+            </div>
+            <div class="caso__img caso__img--after" role="img" aria-label={`Después: ${c.nombre}`}>
+              {c.after && <img src={c.after} alt={`Después: ${c.nombre}`} loading="lazy" />}
+              <span class="caso__tag caso__tag--after">Después</span>
+            </div>
+          </div>
+          <figcaption>
+            <span>{c.nombre}</span>
+            <span class="caso__tec">{c.tecnica}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="resultados__foot">
+      Puedes ver muchos más casos en mi Instagram
+      <a href={contacto.instagram} class="tlink" target="_blank" rel="noopener">{contacto.instagram_handle}</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .resultados__head { max-width: 55ch; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .resultados__head h2 { margin: 1rem 0 1.25rem; }
+  .resultados__note { color: var(--ink-soft); }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+  }
+  .caso { margin: 0; }
+  .caso__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .caso__img {
+    aspect-ratio: 1 / 1;
+    background: repeating-linear-gradient(
+      -45deg, var(--shell-2), var(--shell-2) 10px, var(--shell) 10px, var(--shell) 20px
+    );
+    position: relative;
+    display: grid;
+    place-items: end start;
+  }
+  .caso__img--after {
+    background: radial-gradient(120% 120% at 50% 40%, var(--blush), var(--shell-2) 80%);
+  }
+  .caso__img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .caso__tag { position: relative; z-index: 1; }
+  .caso__tag {
+    margin: 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    background: color-mix(in srgb, var(--shell) 85%, transparent);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .caso__tag--after { color: var(--rose); }
+  .caso figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-top: 0.85rem;
+    font-size: var(--step--1);
+  }
+  .caso__tec { color: var(--taupe); }
+
+  .resultados__foot {
+    margin-top: 2.25rem;
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    max-width: none;
+  }
+
+  @media (max-width: 780px) {
+    .gallery { grid-template-columns: 1fr; max-width: 460px; }
+  }
+</style>

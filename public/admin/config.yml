@@ -1,0 +1,134 @@
+# -------------------------------------------------------------------
+# Panel de contenido de Laura Mora  ·  Sveltia CMS
+# -------------------------------------------------------------------
+# Cambia SOLO las dos líneas marcadas con << EDITAR >> antes de publicar.
+# Todo lo demás ya está configurado.
+
+backend:
+  name: github
+  repo: USUARIO/REPOSITORIO      # << EDITAR >>  ej.: lauramora/web
+  branch: main
+  # Worker de OAuth en Cloudflare (ver carpeta oauth-worker/).
+  base_url: https://TU-WORKER.workers.dev   # << EDITAR >>
+
+# Carpeta donde se suben las fotos desde el panel.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Idioma del panel
+locale: es
+
+# Mensaje que acompaña cada cambio guardado.
+site_url: https://lauramora.com
+display_url: https://lauramora.com
+
+collections:
+  # ---- Contacto y datos del estudio -------------------------------
+  - name: contacto
+    label: "Contacto y datos del estudio"
+    files:
+      - name: contacto
+        label: "Datos de contacto"
+        file: "src/data/contacto.json"
+        fields:
+          - { name: whatsapp, label: "Enlace de WhatsApp", widget: string, hint: "Formato: https://wa.me/34XXXXXXXXX" }
+          - { name: booking_url, label: "Enlace para pedir cita", widget: string, hint: "WhatsApp o tu sistema de reservas (Booksy, etc.)" }
+          - { name: telefono_texto, label: "Teléfono (como se muestra)", widget: string }
+          - { name: instagram, label: "Enlace de Instagram", widget: string }
+          - { name: instagram_handle, label: "Usuario de Instagram", widget: string, hint: "Ej.: @lauramora.brows" }
+          - { name: direccion_linea1, label: "Dirección (línea 1)", widget: string }
+          - { name: direccion_linea2, label: "Dirección (línea 2)", widget: string }
+          - { name: horario_dias, label: "Horario · días", widget: string }
+          - { name: horario_horas, label: "Horario · horas", widget: string }
+          - { name: registro_sanitario, label: "Texto de registro sanitario", widget: string }
+          - { name: map_lat, label: "Mapa · latitud", widget: number, value_type: float, hint: "Ej.: 37.38859" }
+          - { name: map_lng, label: "Mapa · longitud", widget: number, value_type: float, hint: "Ej.: -5.99534" }
+          - { name: map_zoom, label: "Mapa · zoom", widget: number, value_type: int, default: 15 }
+          - { name: como_llegar_url, label: "Enlace 'Cómo llegar'", widget: string }
+
+  # ---- Servicios y precios ----------------------------------------
+  - name: servicios
+    label: "Servicios y precios"
+    files:
+      - name: servicios
+        label: "Lista de servicios"
+        file: "src/data/servicios.json"
+        fields:
+          - name: items
+            label: "Servicios"
+            widget: list
+            label_singular: "Servicio"
+            summary: "{{fields.t}} — {{fields.price}}"
+            fields:
+              - { name: t, label: "Nombre del servicio", widget: string }
+              - { name: d, label: "Descripción", widget: text }
+              - { name: price, label: "Precio", widget: string, hint: "Ej.: desde 250 €" }
+              - { name: incluye, label: "Qué incluye", widget: string }
+
+  # ---- Preguntas frecuentes ---------------------------------------
+  - name: faq
+    label: "Preguntas frecuentes"
+    files:
+      - name: faq
+        label: "Lista de preguntas"
+        file: "src/data/faq.json"
+        fields:
+          - name: items
+            label: "Preguntas"
+            widget: list
+            label_singular: "Pregunta"
+            summary: "{{fields.q}}"
+            fields:
+              - { name: q, label: "Pregunta", widget: string }
+              - { name: a, label: "Respuesta", widget: text }
+
+  # ---- Formaciones (para profesionales) ---------------------------
+  - name: formacion
+    label: "Formaciones (profesionales)"
+    files:
+      - name: formacion
+        label: "Sección de formaciones"
+        file: "src/data/formacion.json"
+        fields:
+          - { name: kicker, label: "Etiqueta pequeña", widget: string }
+          - { name: titulo, label: "Título", widget: string }
+          - { name: texto, label: "Texto", widget: text }
+          - { name: cta_texto, label: "Texto del botón", widget: string }
+          - { name: modalidades, label: "Modalidades", widget: list, field: { name: modalidad, label: "Modalidad", widget: string } }
+
+  # ---- Opiniones de clientas ---------------------------------------
+  - name: testimonios
+    label: "Opiniones de clientas"
+    files:
+      - name: testimonios
+        label: "Lista de opiniones"
+        file: "src/data/testimonios.json"
+        fields:
+          - name: items
+            label: "Opiniones"
+            widget: list
+            label_singular: "Opinión"
+            summary: "{{fields.nombre}}"
+            fields:
+              - { name: texto, label: "Opinión", widget: text }
+              - { name: nombre, label: "Nombre (ej.: Marta G.)", widget: string }
+              - { name: detalle, label: "Detalle (ej.: técnica)", widget: string, required: false }
+
+  # ---- Galería antes / después ------------------------------------
+  - name: galeria
+    label: "Galería antes / después"
+    files:
+      - name: galeria
+        label: "Casos"
+        file: "src/data/gallery.json"
+        fields:
+          - name: items
+            label: "Casos"
+            widget: list
+            label_singular: "Caso"
+            summary: "{{fields.nombre}}"
+            fields:
+              - { name: nombre, label: "Título del caso", widget: string }
+              - { name: tecnica, label: "Técnica", widget: string }
+              - { name: before, label: "Foto ANTES", widget: image, required: false }
+              - { name: after, label: "Foto DESPUÉS", widget: image, required: false }

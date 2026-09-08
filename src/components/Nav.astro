@@ -1,0 +1,76 @@
+---
+const links = [
+  { href: "#que-es", label: "Qué es" },
+  { href: "#proceso", label: "El proceso" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#testimonios", label: "Opiniones" },
+  { href: "#preguntas", label: "Preguntas" },
+];
+---
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a href="#top" class="mark" aria-label="Laura Mora, inicio">
+      <span class="mark__name">Laura Mora</span>
+      <span class="mark__sub">Estética y micropigmentación</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navegación principal">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <a href="#reservar" class="btn btn--solid nav__cta">Reservar</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--shell) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.9rem;
+  }
+  .mark { display: grid; line-height: 1.05; }
+  .mark__name {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+  }
+  .mark__sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--taupe);
+    text-transform: lowercase;
+  }
+  .nav__links {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2.2rem);
+    font-size: var(--step--1);
+    letter-spacing: 0.01em;
+  }
+  .nav__links a {
+    color: var(--ink-soft);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .nav__links a:hover { color: var(--ink); border-color: var(--rose); }
+  .nav__cta { padding: 0.6rem 1.3rem; }
+
+  @media (max-width: 860px) {
+    .nav__links { display: none; }
+  }
+  @media (max-width: 520px) {
+    .nav__cta { display: none; }
+  }
+</style>

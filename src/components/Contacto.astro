@@ -1,0 +1,119 @@
+---
+import BrowStrokes from "./BrowStrokes.astro";
+// Contenido editable desde el panel /admin
+import contacto from "../data/contacto.json";
+
+// Recuadro del mapa a partir de las coordenadas (OpenStreetMap, sin cookies).
+const d = 0.005;
+const bbox = [
+  contacto.map_lng - d,
+  contacto.map_lat - d,
+  contacto.map_lng + d,
+  contacto.map_lat + d,
+].join("%2C");
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${contacto.map_lat}%2C${contacto.map_lng}`;
+---
+
+<section class="contacto section" id="contacto">
+  <div class="wrap">
+    <header class="contacto__head">
+      <div class="contacto__mark" aria-hidden="true">
+        <BrowStrokes variant="mark" />
+      </div>
+      <p class="kicker">Dónde estoy</p>
+      <h2>Ven a verme en Sevilla.</h2>
+    </header>
+
+    <div class="contacto__grid">
+      <address class="contacto__info">
+        <div class="info__row">
+          <dt>Estudio</dt>
+          <dd>{contacto.direccion_linea1}<br />{contacto.direccion_linea2}</dd>
+        </div>
+        <div class="info__row">
+          <dt>Horario</dt>
+          <dd>{contacto.horario_dias}<br />{contacto.horario_horas}</dd>
+        </div>
+        <div class="info__row">
+          <dt>Directo</dt>
+          <dd>
+            <a href={contacto.whatsapp} class="tlink" target="_blank" rel="noopener">{contacto.telefono_texto}</a><br />
+            <a href={contacto.instagram} class="tlink" target="_blank" rel="noopener">{contacto.instagram_handle}</a>
+          </dd>
+        </div>
+        <div class="contacto__cta">
+          <a href={contacto.booking_url} class="btn btn--solid" target="_blank" rel="noopener">
+            Pedir cita
+          </a>
+          <a href={contacto.como_llegar_url} class="btn btn--ghost" target="_blank" rel="noopener">
+            Cómo llegar
+          </a>
+        </div>
+      </address>
+
+      <div class="contacto__map">
+        <iframe
+          title="Ubicación del estudio en el mapa"
+          src={mapSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto { background: var(--ink); color: var(--shell); }
+  .contacto__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .contacto__mark { width: 3.25rem; color: var(--blush); margin-bottom: 1.25rem; }
+  .contacto h2 { color: var(--shell); }
+
+  .contacto__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: stretch;
+  }
+  .contacto__info {
+    font-style: normal;
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+  }
+  .info__row dt {
+    font-size: var(--step--1);
+    letter-spacing: 0.05em;
+    color: var(--blush);
+    margin-bottom: 0.4rem;
+  }
+  .info__row dd {
+    color: color-mix(in srgb, var(--shell) 85%, transparent);
+    line-height: 1.5;
+  }
+  .contacto__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.75rem; }
+  .contacto .btn--solid { background: var(--shell); color: var(--ink); border-color: var(--shell); }
+  .contacto .btn--solid:hover { background: var(--blush); border-color: var(--blush); }
+  .contacto .btn--ghost { color: var(--shell); border-color: color-mix(in srgb, var(--shell) 40%, transparent); }
+  .contacto .btn--ghost:hover { border-color: var(--shell); background: transparent; }
+  .contacto .tlink { border-color: color-mix(in srgb, var(--shell) 35%, transparent); }
+  .contacto .tlink:hover { color: var(--blush); border-color: var(--blush); }
+
+  .contacto__map {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--shell) 22%, transparent);
+    min-height: 320px;
+  }
+  .contacto__map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border: 0;
+    filter: grayscale(0.35) contrast(0.95);
+  }
+
+  @media (max-width: 780px) {
+    .contacto__grid { grid-template-columns: 1fr; }
+  }
+</style>
