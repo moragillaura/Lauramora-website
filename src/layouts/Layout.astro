@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { getImage } from "astro:assets";
 
 interface Props {
   title?: string;
@@ -13,6 +14,31 @@ const {
 // La URL canonica sale de `site` (astro.config.mjs, y --site en el workflow
 // de GitHub Pages). Nunca se escribe un dominio a mano aqui.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+
+// Imagen para compartir (WhatsApp, Instagram, Facebook). Se recorta del
+// retrato del hero; si ese archivo no existe, sencillamente no se emite.
+const ogCandidates = import.meta.glob(
+  "../assets/laura-hero.{jpg,jpeg,png,webp,avif}",
+  { eager: true, import: "default" },
+);
+const ogSource = Object.values(ogCandidates)[0] as ImageMetadata | undefined;
+
+// Proporcion 1.91:1, la que esperan WhatsApp y Facebook. No se pide mas
+// ancho del que tiene el original: sharp no amplia, y anunciar unas medidas
+// que la imagen no tiene hace que algunas plataformas la descarten.
+const ogWidth = ogSource ? Math.min(1200, ogSource.width) : 0;
+const ogHeight = Math.round(ogWidth / 1.91);
+const ogImage = ogSource
+  ? await getImage({
+      src: ogSource,
+      width: ogWidth,
+      height: ogHeight,
+      fit: "cover",
+      position: "top",
+      format: "jpeg",
+    })
+  : null;
+const ogImageURL = ogImage ? new URL(ogImage.src, canonicalURL) : null;
 ---
 
 <!doctype html>
@@ -32,6 +58,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Laura Mora" />
+    {ogImageURL && (
+      <>
+        <meta property="og:image" content={ogImageURL} />
+        <meta property="og:image:width" content={String(ogWidth)} />
+        <meta property="og:image:height" content={String(ogHeight)} />
+        <meta property="og:image:alt" content="Laura Mora en su estudio de micropigmentación en Sevilla" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </>
+    )}
 
     <!-- Fonts: Cormorant Garamond (display, echoes her signage) + Jost (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

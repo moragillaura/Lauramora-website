@@ -2,9 +2,13 @@
 // Contenido editable desde el panel /admin
 import contacto from "../data/contacto.json";
 import galleryData from "../data/gallery.json";
-const casos = galleryData.items;
+// Solo se muestran los casos que ya tienen foto. Si no hay ninguno, la
+// seccion entera no se renderiza: mejor nada que marcos vacios bajo un
+// titulo que promete "antes y despues".
+const casos = galleryData.items.filter((c) => c.before || c.after);
 ---
 
+{casos.length > 0 && (
 <section class="resultados section" id="resultados">
   <div class="wrap">
     <header class="resultados__head">
@@ -43,6 +47,7 @@ const casos = galleryData.items;
     </p>
   </div>
 </section>
+)}
 
 <style>
   .resultados__head { max-width: 55ch; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
