@@ -69,13 +69,12 @@ const ogImageURL = ogImage ? new URL(ogImage.src, canonicalURL) : null;
       </>
     )}
 
-    <!-- Fonts: Cormorant Garamond (display, echoes her signage) + Jost (body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Tipografias propias (ver public/fonts/). Se adelantan las dos que
+         pinta la primera pantalla; el resto las pide el navegador solo. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/fonts/jost-300-normal-latin.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/fonts/cormorant-garamond-500-normal-latin.woff2" />
   </head>
   <body>
     <slot />

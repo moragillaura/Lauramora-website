@@ -4,6 +4,8 @@ import BrowStrokes from "./BrowStrokes.astro";
 import contacto from "../data/contacto.json";
 
 // Recuadro del mapa a partir de las coordenadas (OpenStreetMap, sin cookies).
+// El mapa NO se carga solo: hasta que la visitante pulsa, no se hace ninguna
+// peticion a un tercero y su IP no sale de este dominio.
 const d = 0.005;
 const bbox = [
   contacto.map_lng - d,
@@ -51,13 +53,15 @@ const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&lay
         </div>
       </address>
 
-      <div class="contacto__map">
-        <iframe
-          title="Ubicación del estudio en el mapa"
-          src={mapSrc}
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+      <div class="contacto__map" data-map data-src={mapSrc}>
+        <button type="button" class="contacto__map-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" />
+            <circle cx="12" cy="10" r="2.5" />
+          </svg>
+          <span class="contacto__map-label">Ver el mapa</span>
+          <span class="contacto__map-note">Se carga desde OpenStreetMap al pulsar</span>
+        </button>
       </div>
     </div>
   </div>
@@ -104,7 +108,38 @@ const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&lay
     overflow: hidden;
     border: 1px solid color-mix(in srgb, var(--shell) 22%, transparent);
     min-height: 320px;
+    display: grid;
   }
+
+  /* Cartel previo: mientras esta, no hay ninguna peticion a OpenStreetMap. */
+  .contacto__map-btn {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 0.5rem;
+    min-height: 320px;
+    padding: 1.5rem;
+    text-align: center;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        color-mix(in srgb, var(--shell) 8%, transparent),
+        color-mix(in srgb, var(--shell) 8%, transparent) 12px,
+        transparent 12px,
+        transparent 24px
+      );
+    border: 0;
+    color: inherit;
+    transition: background-color .3s ease;
+  }
+  .contacto__map-btn:hover { background-color: color-mix(in srgb, var(--shell) 10%, transparent); }
+  .contacto__map-btn svg { width: 2rem; height: 2rem; opacity: 0.8; }
+  .contacto__map-label {
+    font-size: var(--step-0);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .contacto__map-note { font-size: var(--step--1); opacity: 0.65; max-width: 26ch; }
   .contacto__map iframe {
     width: 100%;
     height: 100%;
@@ -117,3 +152,21 @@ const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&lay
     .contacto__grid { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  // Sustituye el cartel por el mapa real solo cuando alguien lo pide.
+  document.querySelectorAll<HTMLElement>("[data-map]").forEach((box) => {
+    const btn = box.querySelector("button");
+    const src = box.dataset.src;
+    if (!btn || !src) return;
+
+    btn.addEventListener("click", () => {
+      const frame = document.createElement("iframe");
+      frame.title = "Ubicación del estudio en el mapa";
+      frame.src = src;
+      frame.loading = "lazy";
+      frame.referrerPolicy = "no-referrer";
+      box.replaceChildren(frame);
+    });
+  });
+</script>
