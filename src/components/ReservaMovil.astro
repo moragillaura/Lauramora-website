@@ -1,0 +1,53 @@
+---
+// Barra fija de reserva para movil. La cabecera oculta su boton "Reservar"
+// por debajo de 520px, asi que aqui la accion sigue siempre a mano.
+import contacto from "../data/contacto.json";
+---
+
+<a
+  class="barra"
+  href={contacto.booking_url}
+  target="_blank"
+  rel="noopener"
+>
+  <svg class="barra__icono" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+    <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.17 8.17 0 0 1-1.25-4.36c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.2-8.24 8.2Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.55.13-.17.24-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.04s.87 2.37.99 2.53c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28Z"/>
+  </svg>
+  <span>Pedir cita por WhatsApp</span>
+</a>
+
+<style>
+  .barra {
+    display: none;
+    position: fixed;
+    z-index: 60;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.95rem 1rem;
+    padding-bottom: calc(0.95rem + env(safe-area-inset-bottom, 0px));
+    background: var(--ink);
+    color: var(--shell);
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--ink);
+    transition: background-color .3s ease;
+  }
+  .barra:hover { background: var(--rose); }
+  .barra:focus-visible { outline: 2px solid var(--rose); outline-offset: -4px; }
+  .barra__icono { width: 1.15rem; height: 1.15rem; flex: none; }
+
+  @media (max-width: 520px) {
+    .barra { display: flex; }
+  }
+</style>
+
+<style is:global>
+  /* Reserva sitio al final de la pagina para que la barra no tape el pie. */
+  @media (max-width: 520px) {
+    body { padding-bottom: 4.5rem; }
+  }
+</style>
