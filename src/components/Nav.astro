@@ -1,17 +1,17 @@
 ---
 const links = [
-  { href: "#que-es", label: "Qué es" },
-  { href: "#proceso", label: "El proceso" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#sobre-mi", label: "Sobre mí" },
-  { href: "#testimonios", label: "Opiniones" },
-  { href: "#preguntas", label: "Preguntas" },
+  { href: "/#que-es", label: "Qué es" },
+  { href: "/#proceso", label: "El proceso" },
+  { href: "/#servicios", label: "Servicios" },
+  { href: "/#sobre-mi", label: "Sobre mí" },
+  { href: "/#testimonios", label: "Opiniones" },
+  { href: "/#preguntas", label: "Preguntas" },
 ];
 ---
 
 <header class="nav">
   <div class="wrap nav__inner">
-    <a href="#top" class="mark" aria-label="Laura Mora, inicio">
+    <a href="/#top" class="mark" aria-label="Laura Mora, inicio">
       <span class="mark__name">Laura Mora</span>
       <span class="mark__sub">Estética y micropigmentación</span>
     </a>
@@ -30,7 +30,7 @@ const links = [
       {links.map((l) => <a href={l.href}>{l.label}</a>)}
     </nav>
 
-    <a href="#reservar" class="btn btn--solid nav__cta">Reservar</a>
+    <a href="/#reservar" class="btn btn--solid nav__cta">Reservar</a>
   </div>
 </header>
 

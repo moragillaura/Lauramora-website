@@ -1,0 +1,276 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import contacto from "../data/contacto.json";
+
+// Los datos marcados con <Pendiente> los aporta Laura. Mientras queden
+// pendientes, esta pagina no deberia publicarse: un aviso legal a medias
+// es peor que no tenerlo.
+const actualizado = "PENDIENTE";
+---
+
+<Layout
+  title="Aviso legal y política de privacidad · Laura Mora"
+  description="Información legal, política de privacidad y tratamiento de datos de lauramoramicropigmentacion.com."
+>
+  <Nav />
+
+  <main class="legal section">
+    <div class="wrap legal__wrap">
+      <p class="kicker">Información legal</p>
+      <h1>Aviso legal y política de privacidad</h1>
+
+      <!-- ---------------------------------------------------------- -->
+      <h2 id="datos">1. Datos identificativos</h2>
+      <p>
+        En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la
+        sociedad de la información y de comercio electrónico (LSSI-CE), se
+        hacen constar los siguientes datos:
+      </p>
+      <dl class="legal__datos">
+        <dt>Titular</dt>
+        <dd><span class="pend">PENDIENTE: nombre y apellidos completos</span></dd>
+
+        <dt>NIF</dt>
+        <dd><span class="pend">PENDIENTE: NIF / DNI</span></dd>
+
+        <dt>Domicilio del establecimiento</dt>
+        <dd>{contacto.direccion_linea1}<br />{contacto.direccion_linea2}</dd>
+
+        <dt>Teléfono</dt>
+        <dd>{contacto.telefono_texto}</dd>
+
+        <dt>Correo electrónico</dt>
+        <dd><span class="pend">PENDIENTE: dirección de correo de contacto</span></dd>
+
+        <dt>Actividad</dt>
+        <dd>Estética y micropigmentación.</dd>
+
+        <dt>Registro sanitario</dt>
+        <dd>
+          <span class="pend">PENDIENTE: número de inscripción en el registro
+          de establecimientos de tatuaje y micropigmentación de la Junta de
+          Andalucía</span>
+        </dd>
+
+        <dt>Sitio web</dt>
+        <dd>lauramoramicropigmentacion.com</dd>
+      </dl>
+
+      <!-- ---------------------------------------------------------- -->
+      <h2 id="uso">2. Condiciones de uso</h2>
+      <p>
+        Este sitio tiene carácter informativo. Describe los servicios del
+        estudio y facilita las vías para pedir cita. No se realizan ventas ni
+        pagos a través de la web, y no hay ningún formulario de registro.
+      </p>
+      <p>
+        La información sobre tratamientos es orientativa y no sustituye a una
+        valoración presencial. Cada piel responde de forma distinta y el
+        resultado depende de factores que solo pueden valorarse en consulta.
+      </p>
+
+      <!-- ---------------------------------------------------------- -->
+      <h2 id="privacidad">3. Política de privacidad</h2>
+
+      <h3>Responsable del tratamiento</h3>
+      <p>
+        <span class="pend">PENDIENTE: nombre y NIF</span>, con domicilio en
+        {contacto.direccion_linea1}, {contacto.direccion_linea2}. Puedes
+        dirigirte al responsable en
+        <span class="pend">PENDIENTE: correo electrónico</span>.
+      </p>
+
+      <h3>Qué datos se tratan y de dónde salen</h3>
+      <p>
+        Esta web no recoge ningún dato por sí misma: no tiene formularios, no
+        instala cookies y no utiliza herramientas de analítica. Los datos
+        personales llegan únicamente cuando decides ponerte en contacto:
+      </p>
+      <ul class="legal__lista">
+        <li>Por WhatsApp o teléfono: tu número y lo que nos cuentes en la conversación.</li>
+        <li>Por Instagram: tu usuario y el contenido de los mensajes.</li>
+        <li>En el estudio: los datos de la ficha de consulta y del consentimiento informado.</li>
+      </ul>
+
+      <h3>Para qué se usan</h3>
+      <ul class="legal__lista">
+        <li>Responder a tu consulta y darte cita.</li>
+        <li>Valorar si el tratamiento es adecuado para tu caso.</li>
+        <li>Cumplir las obligaciones sanitarias, fiscales y contables que exige la ley.</li>
+      </ul>
+
+      <h3>Base jurídica</h3>
+      <p>
+        Responder a tus consultas y preparar la cita se apoya en la aplicación
+        de medidas precontractuales a petición tuya (art. 6.1.b del RGPD).
+        Las obligaciones sanitarias, fiscales y contables se apoyan en el
+        cumplimiento de obligaciones legales (art. 6.1.c).
+      </p>
+
+      <h3>Datos de salud</h3>
+      <p>
+        La valoración previa a un tratamiento de micropigmentación incluye
+        información sobre tu salud: alergias, medicación, afecciones de la
+        piel, embarazo o lactancia. Son datos de categoría especial (art. 9
+        del RGPD) y solo se tratan con tu <strong>consentimiento
+        explícito</strong>, recogido por escrito en el consentimiento
+        informado que se firma en el estudio, y con la única finalidad de
+        realizar el tratamiento con seguridad.
+      </p>
+      <p>
+        Puedes retirar ese consentimiento en cualquier momento, sin que ello
+        afecte a la licitud del tratamiento anterior.
+      </p>
+
+      <h3>Destinatarios</h3>
+      <p>
+        No se ceden datos a terceros salvo obligación legal. Debes tener en
+        cuenta, no obstante, que si eliges comunicarte por
+        <strong>WhatsApp</strong> o <strong>Instagram</strong>, el contenido
+        de esa conversación se trata también en los sistemas de
+        <strong>Meta Platforms Ireland Ltd.</strong> conforme a sus propias
+        condiciones, lo que puede implicar transferencias internacionales de
+        datos fuera del Espacio Económico Europeo. Si prefieres evitarlo,
+        puedes contactar por teléfono o por correo electrónico.
+      </p>
+
+      <h3>Conservación</h3>
+      <p>
+        Las conversaciones se conservan mientras dure la relación y, después,
+        durante
+        <span class="pend">PENDIENTE: plazo (lo habitual es el de prescripción
+        de responsabilidades)</span>. La documentación clínica y los
+        consentimientos informados se conservan durante el plazo que exige la
+        normativa sanitaria aplicable.
+      </p>
+
+      <h3>Tus derechos</h3>
+      <p>
+        Puedes solicitar el acceso a tus datos, su rectificación o supresión,
+        la limitación de su tratamiento, oponerte al mismo y solicitar su
+        portabilidad. Para ejercerlos, escribe a
+        <span class="pend">PENDIENTE: correo electrónico</span> indicando cuál
+        de ellos deseas ejercer y acompañando una copia de tu documento de
+        identidad.
+      </p>
+      <p>
+        Si consideras que tus datos no se han tratado correctamente, puedes
+        presentar una reclamación ante la Agencia Española de Protección de
+        Datos (<a href="https://www.aepd.es" class="tlink" target="_blank" rel="noopener">www.aepd.es</a>).
+      </p>
+
+      <!-- ---------------------------------------------------------- -->
+      <h2 id="cookies">4. Cookies y servicios de terceros</h2>
+      <p>
+        <strong>Este sitio no utiliza cookies</strong> ni ninguna otra técnica
+        de almacenamiento o recuperación de datos en tu dispositivo, por lo
+        que no procede solicitar el consentimiento previsto en el artículo
+        22.2 de la LSSI-CE. Tampoco se emplean herramientas de analítica, ni
+        píxeles de seguimiento, ni publicidad.
+      </p>
+      <p>
+        Las tipografías se sirven desde este mismo dominio, de modo que
+        visitar la web no comunica tu dirección IP a ningún tercero. El mapa
+        de la sección de contacto procede de OpenStreetMap y
+        <strong>no se carga automáticamente</strong>: solo se solicita si
+        pulsas sobre él, y hasta ese momento no se establece ninguna conexión
+        con ese servicio.
+      </p>
+      <p>
+        Los enlaces a WhatsApp, Instagram y Google Maps no realizan ninguna
+        petición hasta que decides pulsarlos. Al hacerlo, pasas a estar en un
+        sitio ajeno, con sus propias condiciones y políticas de privacidad.
+      </p>
+
+      <!-- ---------------------------------------------------------- -->
+      <h2 id="propiedad">5. Propiedad intelectual</h2>
+      <p>
+        Los textos, el diseño y las fotografías de este sitio pertenecen a su
+        titular, salvo indicación en contrario. Las fotografías de resultados
+        se publican con el consentimiento expreso de las personas que
+        aparecen en ellas. No está permitida su reproducción sin
+        autorización.
+      </p>
+
+      <!-- ---------------------------------------------------------- -->
+      <h2 id="ley">6. Legislación aplicable</h2>
+      <p>
+        Esta información se rige por la legislación española. Para cualquier
+        controversia serán competentes los juzgados y tribunales que
+        correspondan conforme a la normativa vigente.
+      </p>
+
+      <p class="legal__fecha">
+        Última actualización: <span class="pend">{actualizado}</span>
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal__wrap { max-width: 68ch; }
+  .legal h1 { font-size: var(--step-3); margin: 1rem 0 2.5rem; }
+  .legal h2 {
+    font-size: var(--step-2);
+    margin: 3rem 0 1rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+  }
+  .legal h3 {
+    font-size: var(--step-1);
+    margin: 2rem 0 0.6rem;
+  }
+  .legal p { margin-bottom: 1rem; color: var(--ink-soft); }
+  .legal strong { color: var(--ink); font-weight: 400; }
+
+  .legal__lista { margin: 0 0 1rem; display: grid; gap: 0.5rem; }
+  .legal__lista li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--ink-soft);
+  }
+  .legal__lista li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.6rem;
+    height: 1px;
+    background: var(--rose);
+  }
+
+  .legal__datos {
+    display: grid;
+    grid-template-columns: minmax(10rem, 14rem) 1fr;
+    gap: 0.35rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .legal__datos dt { color: var(--taupe); font-size: var(--step--1); padding-top: 0.15rem; }
+  .legal__datos dd { margin: 0; color: var(--ink-soft); }
+
+  /* Marca visible para los datos que faltan. Si algo de esto llega a
+     produccion, se ve a la primera. */
+  .pend {
+    background: color-mix(in srgb, var(--rose) 14%, transparent);
+    border-bottom: 1px dashed var(--rose);
+    color: var(--rose);
+    padding: 0 0.25rem;
+  }
+
+  .legal__fecha {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--step--1);
+    color: var(--taupe);
+  }
+
+  @media (max-width: 560px) {
+    .legal__datos { grid-template-columns: 1fr; gap: 0.15rem; }
+    .legal__datos dd { margin-bottom: 0.75rem; }
+  }
+</style>
