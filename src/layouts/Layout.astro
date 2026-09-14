@@ -9,6 +9,10 @@ const {
   title = "Laura Mora · Estética y micropigmentación en Sevilla",
   description = "Centro de micropigmentación en Sevilla. Micropigmentación natural y resultados realistas: microblading, laminado de cejas, lifting de pestañas, faciales bajo diagnóstico y presoterapia. Formaciones presenciales y online.",
 } = Astro.props;
+
+// La URL canonica sale de `site` (astro.config.mjs, y --site en el workflow
+// de GitHub Pages). Nunca se escribe un dominio a mano aqui.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
@@ -20,11 +24,11 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f6f1ea" />
-    <link rel="canonical" href="https://lauramora.com/" />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://lauramora.com/" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="es_ES" />

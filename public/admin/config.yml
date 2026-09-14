@@ -1,15 +1,15 @@
 # -------------------------------------------------------------------
 # Panel de contenido de Laura Mora  ·  Sveltia CMS
 # -------------------------------------------------------------------
-# Cambia SOLO las dos líneas marcadas con << EDITAR >> antes de publicar.
-# Todo lo demás ya está configurado.
+# Ya está todo configurado. Se entra en /admin con un token personal
+# de GitHub (PAT); ver el README, sección "Entrar en el panel".
 
 backend:
   name: github
-  repo: USUARIO/REPOSITORIO      # << EDITAR >>  ej.: lauramora/web
+  repo: moragillaura/Lauramora-website
   branch: main
-  # Worker de OAuth en Cloudflare (ver carpeta oauth-worker/).
-  base_url: https://TU-WORKER.workers.dev   # << EDITAR >>
+  # Sin `base_url`: no hay worker de OAuth. El acceso es con token personal
+  # (Sveltia lo ofrece en la pantalla de login).
 
 # Carpeta donde se suben las fotos desde el panel.
 media_folder: "public/uploads"
@@ -19,8 +19,8 @@ public_folder: "/uploads"
 locale: es
 
 # Mensaje que acompaña cada cambio guardado.
-site_url: https://lauramora.com
-display_url: https://lauramora.com
+site_url: https://lauramoramicropigmentacion.com
+display_url: https://lauramoramicropigmentacion.com
 
 collections:
   # ---- Contacto y datos del estudio -------------------------------
