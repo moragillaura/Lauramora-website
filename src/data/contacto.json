@@ -9,8 +9,8 @@
   "horario_dias": "Martes a sábado",
   "horario_horas": "Con cita previa",
   "registro_sanitario": "Estudio con registro sanitario · Junta de Andalucía",
-  "map_lat": 37.38859,
-  "map_lng": -5.99534,
+  "map_lat": 37.1643,
+  "map_lng": -5.9181,
   "map_zoom": 15,
-  "como_llegar_url": "https://www.google.com/maps/search/?api=1&query=37.38859,-5.99534"
+  "como_llegar_url": "https://www.google.com/maps/search/?api=1&query=37.1643,-5.9181"
 }
