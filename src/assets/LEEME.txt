@@ -3,8 +3,8 @@ Fotos locales optimizadas (retratos de Laura).
 Para que aparezcan automáticamente en la web, guarda aquí los archivos con
 EXACTAMENTE estos nombres (vale jpg, png, webp o avif):
 
-  laura-hero.jpg      -> foto grande del hero  (YA INSTALADA)
-  laura-retrato.jpg   -> foto de la sección "Sobre mí"  (YA INSTALADA)
+  laura-hero.webp     -> foto grande del hero  (YA INSTALADA)
+  laura-retrato.webp  -> foto de la sección "Sobre mí"  (YA INSTALADA)
 
 Si no existen, la web muestra un marco elegante de sustitución.
 Las fotos de la galería antes/después NO van aquí: se suben desde /admin.
