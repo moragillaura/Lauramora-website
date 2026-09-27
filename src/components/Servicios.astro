@@ -1,14 +1,18 @@
 ---
-// Contenido editable desde el panel /admin
-import serviciosData from "../data/servicios.json";
-const servicios = serviciosData.items;
+import Lineas from "./Lineas.astro";
+// Contenido editable desde el panel /admin (Servicios)
+import raw from "../data/servicios.json";
+import { lista, txt } from "../lib/texto";
+const sd: any = raw;
+const servicios = lista<any>(sd.items).filter((s) => txt(s.t));
 ---
 
+{servicios.length > 0 && (
 <section class="servicios section" id="servicios">
   <div class="wrap">
     <header class="servicios__head">
-      <p class="kicker">Servicios</p>
-      <h2>Lo que puedo hacer por tus cejas.</h2>
+      {txt(sd.etiqueta) && <p class="kicker">{sd.etiqueta}</p>}
+      {txt(sd.titulo) && <h2><Lineas text={sd.titulo} /></h2>}
     </header>
 
     <div class="servicios__grid">
@@ -16,20 +20,23 @@ const servicios = serviciosData.items;
         <article class="card">
           <div class="card__top">
             <h3>{s.t}</h3>
-            <span class="card__price">{s.price}</span>
+            {txt(s.price) && <span class="card__price">{s.price}</span>}
           </div>
-          <p>{s.d}</p>
-          <p class="card__incluye">{s.incluye}</p>
+          {txt(s.d) && <p>{s.d}</p>}
+          {txt(s.incluye) && <p class="card__incluye">{s.incluye}</p>}
         </article>
       ))}
     </div>
 
-    <p class="servicios__foot">
-      Los precios son orientativos: el definitivo se cierra en la consulta,
-      según tu caso. <a href="#contacto" class="tlink">Escríbeme para tu presupuesto</a>.
-    </p>
+    {(txt(sd.nota_final) || txt(sd.nota_enlace)) && (
+      <p class="servicios__foot">
+        {sd.nota_final}{txt(sd.nota_final) && txt(sd.nota_enlace) && " "}
+        {txt(sd.nota_enlace) && <Fragment><a href="#contacto" class="tlink">{sd.nota_enlace}</a>.</Fragment>}
+      </p>
+    )}
   </div>
 </section>
+)}
 
 <style>
   .servicios { background: var(--shell-2); }

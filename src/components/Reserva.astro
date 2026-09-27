@@ -1,13 +1,12 @@
 ---
 import BrowStrokes from "./BrowStrokes.astro";
-// Contenido editable desde el panel /admin
+import Lineas from "./Lineas.astro";
+// Contenido editable desde el panel /admin (Reservar)
 import contacto from "../data/contacto.json";
-
-const pasos = [
-  { t: "Escríbeme", d: "Cuéntame qué buscas por WhatsApp o Instagram. Sin compromiso." },
-  { t: "Reservamos tu consulta", d: "Buscamos hueco para vernos, valorar tu caso y diseñar la forma." },
-  { t: "El día de tu cita", d: "Si todo encaja, hacemos el tratamiento. Si no, te lo digo con honestidad." },
-];
+import raw from "../data/reserva.json";
+import { lista, txt } from "../lib/texto";
+const r: any = raw;
+const pasos = lista<any>(r.pasos).filter((p) => txt(p.titulo) || txt(p.texto));
 ---
 
 <section class="reserva section" id="reservar">
@@ -16,28 +15,29 @@ const pasos = [
       <div class="reserva__mark" aria-hidden="true">
         <BrowStrokes variant="mark" />
       </div>
-      <p class="kicker">Reservar</p>
-      <h2>Reservar es fácil.<br />Empieza por un mensaje.</h2>
-      <p class="lead">
-        No hace falta decidir nada hoy. La primera cita es una consulta:
-        miramos tu caso y tú decides con calma.
-      </p>
-      <a href={contacto.booking_url} class="btn btn--solid" target="_blank" rel="noopener">
-        Pedir cita por WhatsApp
-      </a>
+      {txt(r.etiqueta) && <p class="kicker">{r.etiqueta}</p>}
+      {txt(r.titulo) && <h2><Lineas text={r.titulo} /></h2>}
+      {txt(r.texto) && <p class="lead">{r.texto}</p>}
+      {txt(r.boton) && (
+        <a href={contacto.booking_url} class="btn btn--solid" target="_blank" rel="noopener">
+          {r.boton}
+        </a>
+      )}
     </div>
 
-    <ol class="reserva__pasos">
-      {pasos.map((p, i) => (
-        <li>
-          <span class="reserva__n">{String(i + 1).padStart(2, "0")}</span>
-          <div>
-            <h3>{p.t}</h3>
-            <p>{p.d}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
+    {pasos.length > 0 && (
+      <ol class="reserva__pasos">
+        {pasos.map((p, i) => (
+          <li>
+            <span class="reserva__n">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              {txt(p.titulo) && <h3>{p.titulo}</h3>}
+              {txt(p.texto) && <p>{p.texto}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    )}
   </div>
 </section>
 

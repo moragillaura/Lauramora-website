@@ -1,0 +1,23 @@
+{
+  "etiqueta": "Qué es",
+  "titulo": "Rellenar, redefinir\ny dar forma. Sin que\ndeje de ser tu cara.",
+  "texto": "El microblading es una micropigmentación en la que deposito pigmento en la capa más superficial de la piel con trazos muy finos, uno a uno. El resultado imita el vello natural, así que las cejas se ven más pobladas y definidas, pero siguen pareciendo tuyas.\n\nEs ideal si tienes zonas sin pelo, cejas claras o poco simétricas, o si simplemente quieres olvidarte del lápiz cada mañana. No es maquillaje: el pigmento está en la piel y aguanta el agua, el sudor y el día a día.",
+  "puntos": [
+    {
+      "titulo": "Semipermanente",
+      "texto": "Dura entre 12 y 18 meses. Se retoca, no es un tatuaje para toda la vida."
+    },
+    {
+      "titulo": "Pelo a pelo",
+      "texto": "Trazos finos que imitan el vello real. De cerca no se ve un bloque de color."
+    },
+    {
+      "titulo": "A mano",
+      "texto": "Con una herramienta manual, sin máquina. Control total del trazo."
+    },
+    {
+      "titulo": "A tu medida",
+      "texto": "La forma se diseña sobre tu cara antes de empezar, y la apruebas tú."
+    }
+  ]
+}

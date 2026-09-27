@@ -1,7 +1,9 @@
 ---
 import BrowStrokes from "./BrowStrokes.astro";
 // Contenido editable desde el panel /admin
-import contacto from "../data/contacto.json";
+import raw from "../data/contacto.json";
+import { txt } from "../lib/texto";
+const contacto: any = raw;
 
 // Recuadro del mapa a partir de las coordenadas (OpenStreetMap, sin cookies).
 const d = 0.005;
@@ -20,8 +22,8 @@ const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&lay
       <div class="contacto__mark" aria-hidden="true">
         <BrowStrokes variant="mark" />
       </div>
-      <p class="kicker">Dónde estoy</p>
-      <h2>Ven a verme en Sevilla.</h2>
+      {txt(contacto.seccion_etiqueta) && <p class="kicker">{contacto.seccion_etiqueta}</p>}
+      {txt(contacto.seccion_titulo) && <h2>{contacto.seccion_titulo}</h2>}
     </header>
 
     <div class="contacto__grid">
@@ -42,12 +44,16 @@ const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&lay
           </dd>
         </div>
         <div class="contacto__cta">
-          <a href={contacto.booking_url} class="btn btn--solid" target="_blank" rel="noopener">
-            Pedir cita
-          </a>
-          <a href={contacto.como_llegar_url} class="btn btn--ghost" target="_blank" rel="noopener">
-            Cómo llegar
-          </a>
+          {txt(contacto.boton_cita) && (
+            <a href={contacto.booking_url} class="btn btn--solid" target="_blank" rel="noopener">
+              {contacto.boton_cita}
+            </a>
+          )}
+          {txt(contacto.boton_llegar) && (
+            <a href={contacto.como_llegar_url} class="btn btn--ghost" target="_blank" rel="noopener">
+              {contacto.boton_llegar}
+            </a>
+          )}
         </div>
       </address>
 

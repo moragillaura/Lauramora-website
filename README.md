@@ -55,6 +55,20 @@ Abrir <https://lauramoramicropigmentacion.com/admin>, elegir la opción de
 **token de acceso personal** y pegarlo. El navegador lo recuerda; solo hay que
 volver a pegarlo cuando el token caduque o se cambie de dispositivo.
 
+### Qué se puede editar
+
+Casi todo el texto de la web está en el panel, en **Textos de la web**, con una
+entrada por sección en el mismo orden que la página (más **General**: menú,
+pie y el título/descripción de Google). Los textos viven en `src/data/*.json`.
+
+- **Todos los campos son opcionales.** Lo que se deja vacío no se muestra
+  (precio, «qué incluye», botones, notas…). Si se vacía una lista entera
+  (servicios, opiniones, preguntas), desaparece la sección.
+- En los títulos, **Intro** parte la línea. En los textos largos, una línea en
+  blanco separa párrafos.
+- Siguen fijos en el código: los enlaces del pie, las etiquetas
+  Estudio/Horario/Directo del contacto y las marcas «Antes»/«Después».
+
 ### Qué pasa al guardar
 
 Sveltia hace un commit en `main` con el cambio. Eso dispara el workflow y la web

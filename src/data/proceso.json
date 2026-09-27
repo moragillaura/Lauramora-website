@@ -1,0 +1,27 @@
+{
+  "etiqueta": "El proceso",
+  "titulo": "De la primera charla\na tus cejas definitivas.",
+  "texto": "Dos citas, un resultado. Todo el recorrido está pensado para que entiendas cada paso y no haya sorpresas.",
+  "pasos": [
+    {
+      "titulo": "Consulta y diseño",
+      "texto": "Miramos juntas tu cara: simetría, forma natural y el tono de pigmento que va con tu piel y tu pelo. Dibujo la forma y no empezamos hasta que te convence.",
+      "duracion": "45 min"
+    },
+    {
+      "titulo": "Pigmentación",
+      "texto": "Aplico anestesia tópica para tu comodidad y trabajo trazo a trazo, a mano. Es la parte larga, la que da el resultado natural.",
+      "duracion": "2 h aprox."
+    },
+    {
+      "titulo": "Cicatrización",
+      "texto": "Te llevas instrucciones claras de cuidado. La piel se cura en 7–10 días: el color intensa al principio y luego se suaviza hasta su tono real.",
+      "duracion": "7–10 días"
+    },
+    {
+      "titulo": "Retoque",
+      "texto": "A las 4–6 semanas repasamos lo que la piel haya matizado. Este retoque está incluido y es lo que fija el resultado final.",
+      "duracion": "Incluido"
+    }
+  ]
+}

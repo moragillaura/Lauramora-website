@@ -1,29 +1,38 @@
 ---
-// Contenido editable desde el panel /admin
-import formacion from "../data/formacion.json";
+// Contenido editable desde el panel /admin (Formaciones)
+import raw from "../data/formacion.json";
 import contacto from "../data/contacto.json";
+import { lista, parrafos, txt } from "../lib/texto";
+const f: any = raw;
+const modos = lista<string>(f.modalidades).map((m) => txt(m)).filter(Boolean);
 ---
 
+{(txt(f.titulo) || txt(f.texto)) && (
 <section class="formacion section" id="formacion">
   <div class="wrap">
     <div class="formacion__card">
       <div class="formacion__text">
-        <p class="kicker">{formacion.kicker}</p>
-        <h2>{formacion.titulo}</h2>
-        <p>{formacion.texto}</p>
+        {txt(f.kicker) && <p class="kicker">{f.kicker}</p>}
+        {txt(f.titulo) && <h2>{f.titulo}</h2>}
+        {parrafos(f.texto).map((p) => <p>{p}</p>)}
       </div>
 
       <div class="formacion__aside">
-        <ul class="formacion__modos">
-          {formacion.modalidades.map((m) => <li>{m}</li>)}
-        </ul>
-        <a href={contacto.instagram} class="btn btn--solid" target="_blank" rel="noopener">
-          {formacion.cta_texto}
-        </a>
+        {modos.length > 0 && (
+          <ul class="formacion__modos">
+            {modos.map((m) => <li>{m}</li>)}
+          </ul>
+        )}
+        {txt(f.cta_texto) && (
+          <a href={contacto.instagram} class="btn btn--solid" target="_blank" rel="noopener">
+            {f.cta_texto}
+          </a>
+        )}
       </div>
     </div>
   </div>
 </section>
+)}
 
 <style>
   .formacion { background: var(--shell-2); }
