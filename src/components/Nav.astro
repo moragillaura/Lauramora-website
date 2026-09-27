@@ -1,19 +1,16 @@
 ---
-const links = [
-  { href: "#que-es", label: "Qué es" },
-  { href: "#proceso", label: "El proceso" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#sobre-mi", label: "Sobre mí" },
-  { href: "#testimonios", label: "Opiniones" },
-  { href: "#preguntas", label: "Preguntas" },
-];
+// Textos editables desde el panel /admin (General)
+import raw from "../data/general.json";
+import { lista, txt } from "../lib/texto";
+const g: any = raw;
+const links = lista<any>(g.menu).filter((l) => txt(l.texto) && txt(l.seccion));
 ---
 
 <header class="nav">
   <div class="wrap nav__inner">
-    <a href="#top" class="mark" aria-label="Laura Mora, inicio">
-      <span class="mark__name">Laura Mora</span>
-      <span class="mark__sub">Estética y micropigmentación</span>
+    <a href="#top" class="mark" aria-label={`${txt(g.marca_nombre) || "Inicio"}, inicio`}>
+      {txt(g.marca_nombre) && <span class="mark__name">{g.marca_nombre}</span>}
+      {txt(g.marca_subtitulo) && <span class="mark__sub">{g.marca_subtitulo}</span>}
     </a>
 
     <button
@@ -27,10 +24,10 @@ const links = [
     </button>
 
     <nav class="nav__menu" id="nav-menu" aria-label="Navegación principal">
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      {links.map((l) => <a href={l.seccion}>{l.texto}</a>)}
     </nav>
 
-    <a href="#reservar" class="btn btn--solid nav__cta">Reservar</a>
+    {txt(g.menu_boton) && <a href="#reservar" class="btn btn--solid nav__cta">{g.menu_boton}</a>}
   </div>
 </header>
 

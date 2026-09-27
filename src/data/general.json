@@ -1,0 +1,36 @@
+{
+  "marca_nombre": "Laura Mora",
+  "marca_subtitulo": "Estética y micropigmentación",
+  "seo_titulo": "Laura Mora · Estética y micropigmentación en Sevilla",
+  "seo_descripcion": "Centro de micropigmentación en Sevilla. Micropigmentación natural y resultados realistas: microblading, laminado de cejas, lifting de pestañas, faciales bajo diagnóstico y presoterapia. Formaciones presenciales y online.",
+  "menu": [
+    {
+      "texto": "Qué es",
+      "seccion": "#que-es"
+    },
+    {
+      "texto": "El proceso",
+      "seccion": "#proceso"
+    },
+    {
+      "texto": "Servicios",
+      "seccion": "#servicios"
+    },
+    {
+      "texto": "Sobre mí",
+      "seccion": "#sobre-mi"
+    },
+    {
+      "texto": "Opiniones",
+      "seccion": "#testimonios"
+    },
+    {
+      "texto": "Preguntas",
+      "seccion": "#preguntas"
+    }
+  ],
+  "menu_boton": "Reservar",
+  "barra_movil_texto": "Pedir cita por WhatsApp",
+  "pie_subtitulo": "Estética y micropigmentación · Sevilla",
+  "pie_derechos": "Todos los derechos reservados."
+}

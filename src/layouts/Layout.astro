@@ -1,14 +1,17 @@
 ---
 import "../styles/global.css";
 import { getImage } from "astro:assets";
+// Título y descripción para Google: editables desde el panel /admin (General)
+import general from "../data/general.json";
+const g: any = general;
 
 interface Props {
   title?: string;
   description?: string;
 }
 const {
-  title = "Laura Mora · Estética y micropigmentación en Sevilla",
-  description = "Centro de micropigmentación en Sevilla. Micropigmentación natural y resultados realistas: microblading, laminado de cejas, lifting de pestañas, faciales bajo diagnóstico y presoterapia. Formaciones presenciales y online.",
+  title = String(g.seo_titulo ?? "").trim() || "Laura Mora · Estética y micropigmentación en Sevilla",
+  description = String(g.seo_descripcion ?? "").trim() || "Centro de micropigmentación en Sevilla.",
 } = Astro.props;
 
 // La URL canonica sale de `site` (astro.config.mjs, y --site en el workflow

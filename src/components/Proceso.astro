@@ -1,55 +1,35 @@
 ---
-const steps = [
-  {
-    n: "01",
-    t: "Consulta y diseño",
-    d: "Miramos juntas tu cara: simetría, forma natural y el tono de pigmento que va con tu piel y tu pelo. Dibujo la forma y no empezamos hasta que te convence.",
-    time: "45 min",
-  },
-  {
-    n: "02",
-    t: "Pigmentación",
-    d: "Aplico anestesia tópica para tu comodidad y trabajo trazo a trazo, a mano. Es la parte larga, la que da el resultado natural.",
-    time: "2 h aprox.",
-  },
-  {
-    n: "03",
-    t: "Cicatrización",
-    d: "Te llevas instrucciones claras de cuidado. La piel se cura en 7–10 días: el color intensa al principio y luego se suaviza hasta su tono real.",
-    time: "7–10 días",
-  },
-  {
-    n: "04",
-    t: "Retoque",
-    d: "A las 4–6 semanas repasamos lo que la piel haya matizado. Este retoque está incluido y es lo que fija el resultado final.",
-    time: "Incluido",
-  },
-];
+import Lineas from "./Lineas.astro";
+// Textos editables desde el panel /admin (El proceso)
+import raw from "../data/proceso.json";
+import { lista, txt } from "../lib/texto";
+const p: any = raw;
+// El número de cada paso (01, 02…) se pone solo, según el orden.
+const steps = lista<any>(p.pasos).filter((s) => txt(s.titulo) || txt(s.texto));
 ---
 
 <section class="proceso section" id="proceso">
   <div class="wrap">
     <header class="proceso__head">
-      <p class="kicker">El proceso</p>
-      <h2>De la primera charla<br />a tus cejas definitivas.</h2>
-      <p class="proceso__note">
-        Dos citas, un resultado. Todo el recorrido está pensado para que
-        entiendas cada paso y no haya sorpresas.
-      </p>
+      {txt(p.etiqueta) && <p class="kicker">{p.etiqueta}</p>}
+      {txt(p.titulo) && <h2><Lineas text={p.titulo} /></h2>}
+      {txt(p.texto) && <p class="proceso__note">{p.texto}</p>}
     </header>
 
-    <ol class="steps">
-      {steps.map((s) => (
-        <li class="step">
-          <span class="step__n">{s.n}</span>
-          <div class="step__main">
-            <h3>{s.t}</h3>
-            <p>{s.d}</p>
-          </div>
-          <span class="step__time">{s.time}</span>
-        </li>
-      ))}
-    </ol>
+    {steps.length > 0 && (
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step">
+            <span class="step__n">{String(i + 1).padStart(2, "0")}</span>
+            <div class="step__main">
+              {txt(s.titulo) && <h3>{s.titulo}</h3>}
+              {txt(s.texto) && <p>{s.texto}</p>}
+            </div>
+            <span class="step__time">{s.duracion}</span>
+          </li>
+        ))}
+      </ol>
+    )}
   </div>
 </section>
 

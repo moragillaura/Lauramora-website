@@ -1,17 +1,19 @@
 ---
-// Contenido editable desde el panel /admin
-import faqData from "../data/faq.json";
-const faqs = faqData.items;
+import Lineas from "./Lineas.astro";
+// Contenido editable desde el panel /admin (Preguntas frecuentes)
+import raw from "../data/faq.json";
+import { lista, txt } from "../lib/texto";
+const fd: any = raw;
+const faqs = lista<any>(fd.items).filter((f) => txt(f.q));
 ---
 
+{faqs.length > 0 && (
 <section class="faq section" id="preguntas">
   <div class="wrap faq__grid">
     <header class="faq__head">
-      <p class="kicker">Preguntas frecuentes</p>
-      <h2>Lo que casi<br />todas me preguntan.</h2>
-      <p class="faq__note">
-        ¿Te queda alguna duda? Escríbeme sin compromiso y te respondo yo misma.
-      </p>
+      {txt(fd.etiqueta) && <p class="kicker">{fd.etiqueta}</p>}
+      {txt(fd.titulo) && <h2><Lineas text={fd.titulo} /></h2>}
+      {txt(fd.texto) && <p class="faq__note">{fd.texto}</p>}
     </header>
 
     <div class="faq__list">
@@ -21,12 +23,13 @@ const faqs = faqData.items;
             <span>{f.q}</span>
             <span class="faq__icon" aria-hidden="true"></span>
           </summary>
-          <p>{f.a}</p>
+          {txt(f.a) && <p>{f.a}</p>}
         </details>
       ))}
     </div>
   </div>
 </section>
+)}
 
 <style>
   .faq__grid {

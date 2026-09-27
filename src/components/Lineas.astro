@@ -1,0 +1,6 @@
+---
+// Pinta un texto del panel respetando los saltos de línea (Intro = nueva línea).
+const { text = "" } = Astro.props;
+const lineas = String(text ?? "").trim().split("\n");
+---
+{lineas.map((l, i) => <Fragment>{i > 0 && <br />}{l}</Fragment>)}

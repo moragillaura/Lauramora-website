@@ -1,55 +1,46 @@
 ---
 import BrowStrokes from "./BrowStrokes.astro";
+import Lineas from "./Lineas.astro";
 import { Image } from "astro:assets";
+// Textos editables desde el panel /admin (Sobre mí)
+import raw from "../data/sobre-mi.json";
+import { lista, parrafos, txt } from "../lib/texto";
+const s: any = raw;
 
 const retratoImgs = import.meta.glob("../assets/laura-retrato.{jpg,jpeg,png,webp,avif}", {
   eager: true,
   import: "default",
 });
 const retratoImg = Object.values(retratoImgs)[0] as any;
-
-const garantias = [
-  "Material de un solo uso, estéril y desechado delante de ti",
-  "Estudio con registro sanitario en regla",
-  "Pigmentos de calidad, con su ficha y caducidad",
-  "Consentimiento informado antes de cada sesión",
-];
+const fotoAlt = txt(s.foto_descripcion) || "Laura Mora";
+const garantias = lista<string>(s.garantias).map((g) => txt(g)).filter(Boolean);
 ---
 
 <section class="sobre section" id="sobre-mi">
   <div class="wrap sobre__grid">
     <div class="sobre__media">
-      <div class="portrait" role="img" aria-label="Laura Mora con una alumna de su formación de microblading">
+      <div class="portrait" role="img" aria-label={fotoAlt}>
         {retratoImg
-          ? <Image src={retratoImg} alt="Laura Mora entregando un certificado de su formación de microblading a una alumna en su estudio" class="portrait__photo" widths={[400, 600, 800, 1000, 1400]} quality={95} sizes="(max-width: 820px) 320px, 32vw" />
+          ? <Image src={retratoImg} alt={fotoAlt} class="portrait__photo" widths={[400, 600, 800, 1000, 1400]} quality={95} sizes="(max-width: 820px) 320px, 32vw" />
           : <span class="frame__hint">Retrato de Laura</span>}
       </div>
     </div>
 
     <div class="sobre__text">
-      <p class="kicker">Sobre mí</p>
-      <h2>Me llamo Laura y<br />me obsesiona el detalle.</h2>
+      {txt(s.etiqueta) && <p class="kicker">{s.etiqueta}</p>}
+      {txt(s.titulo) && <h2><Lineas text={s.titulo} /></h2>}
 
-      <p>
-        Llevo años dedicada solo a las cejas, aquí en Sevilla. Trabajo despacio
-        y con pocas clientas al día porque cada cara pide lo suyo: no creo en la
-        misma ceja para todo el mundo. Mi objetivo no es que se note que te has
-        hecho algo, sino que te veas mejor y sigas siendo tú.
-      </p>
-      <p>
-        Antes de coger la herramienta dedicamos el tiempo que haga falta al
-        diseño: medimos, probamos y ajustamos delante del espejo hasta que la
-        forma te convence. Prefiero una charla larga a un resultado con el que
-        no te sientas cómoda.
-      </p>
+      {parrafos(s.texto).map((p) => <p>{p}</p>)}
 
       <div class="sobre__mark" aria-hidden="true">
         <BrowStrokes variant="mark" />
       </div>
 
-      <ul class="garantias">
-        {garantias.map((g) => <li>{g}</li>)}
-      </ul>
+      {garantias.length > 0 && (
+        <ul class="garantias">
+          {garantias.map((g) => <li>{g}</li>)}
+        </ul>
+      )}
     </div>
   </div>
 </section>

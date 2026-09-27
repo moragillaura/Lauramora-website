@@ -1,0 +1,20 @@
+{
+  "etiqueta": "Reservar",
+  "titulo": "Reservar es fácil.\nEmpieza por un mensaje.",
+  "texto": "No hace falta decidir nada hoy. La primera cita es una consulta: miramos tu caso y tú decides con calma.",
+  "boton": "Pedir cita por WhatsApp",
+  "pasos": [
+    {
+      "titulo": "Escríbeme",
+      "texto": "Cuéntame qué buscas por WhatsApp o Instagram. Sin compromiso."
+    },
+    {
+      "titulo": "Reservamos tu consulta",
+      "texto": "Buscamos hueco para vernos, valorar tu caso y diseñar la forma."
+    },
+    {
+      "titulo": "El día de tu cita",
+      "texto": "Si todo encaja, hacemos el tratamiento. Si no, te lo digo con honestidad."
+    }
+  ]
+}

@@ -2,22 +2,22 @@
 // Contenido editable desde el panel /admin
 import contacto from "../data/contacto.json";
 import galleryData from "../data/gallery.json";
+import Lineas from "./Lineas.astro";
+import { lista, txt } from "../lib/texto";
+const gd: any = galleryData;
 // Solo se muestran los casos que ya tienen foto. Si no hay ninguno, la
 // seccion entera no se renderiza: mejor nada que marcos vacios bajo un
 // titulo que promete "antes y despues".
-const casos = galleryData.items.filter((c) => c.before || c.after);
+const casos = lista<any>(gd.items).filter((c) => c.before || c.after);
 ---
 
 {casos.length > 0 && (
 <section class="resultados section" id="resultados">
   <div class="wrap">
     <header class="resultados__head">
-      <p class="kicker">Resultados</p>
-      <h2>Antes y después,<br />sin filtros.</h2>
-      <p class="resultados__note">
-        Fotos reales de clientas, siempre con su permiso. El acabado que ves es
-        el de la piel ya curada, no el del primer día.
-      </p>
+      {txt(gd.etiqueta) && <p class="kicker">{gd.etiqueta}</p>}
+      {txt(gd.titulo) && <h2><Lineas text={gd.titulo} /></h2>}
+      {txt(gd.texto) && <p class="resultados__note">{gd.texto}</p>}
     </header>
 
     <div class="gallery">
@@ -41,10 +41,12 @@ const casos = galleryData.items.filter((c) => c.before || c.after);
       ))}
     </div>
 
-    <p class="resultados__foot">
-      Puedes ver muchos más casos en mi Instagram
-      <a href={contacto.instagram} class="tlink" target="_blank" rel="noopener">{contacto.instagram_handle}</a>.
-    </p>
+    {txt(gd.nota_instagram) && (
+      <p class="resultados__foot">
+        {gd.nota_instagram}{" "}
+        <a href={contacto.instagram} class="tlink" target="_blank" rel="noopener">{contacto.instagram_handle}</a>.
+      </p>
+    )}
   </div>
 </section>
 )}

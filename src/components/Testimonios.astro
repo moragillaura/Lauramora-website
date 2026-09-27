@@ -1,14 +1,18 @@
 ---
-// Contenido editable desde el panel /admin
-import testimoniosData from "../data/testimonios.json";
-const testimonios = testimoniosData.items;
+import Lineas from "./Lineas.astro";
+// Contenido editable desde el panel /admin (Opiniones)
+import raw from "../data/testimonios.json";
+import { lista, txt } from "../lib/texto";
+const td: any = raw;
+const testimonios = lista<any>(td.items).filter((t) => txt(t.texto));
 ---
 
+{testimonios.length > 0 && (
 <section class="testi section" id="testimonios">
   <div class="wrap">
     <header class="testi__head">
-      <p class="kicker">Lo que dicen mis clientas</p>
-      <h2>Confían en mí para<br />algo tan visible como su cara.</h2>
+      {txt(td.etiqueta) && <p class="kicker">{td.etiqueta}</p>}
+      {txt(td.titulo) && <h2><Lineas text={td.titulo} /></h2>}
     </header>
 
     <div class="testi__grid">
@@ -17,14 +21,15 @@ const testimonios = testimoniosData.items;
           <span class="quote__mark" aria-hidden="true">&rdquo;</span>
           <blockquote>{t.texto}</blockquote>
           <figcaption>
-            <span class="quote__name">{t.nombre}</span>
-            {t.detalle && <span class="quote__detail">{t.detalle}</span>}
+            {txt(t.nombre) && <span class="quote__name">{t.nombre}</span>}
+            {txt(t.detalle) && <span class="quote__detail">{t.detalle}</span>}
           </figcaption>
         </figure>
       ))}
     </div>
   </div>
 </section>
+)}
 
 <style>
   .testi {

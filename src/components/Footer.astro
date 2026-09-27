@@ -1,14 +1,17 @@
 ---
-// Contenido editable desde el panel /admin
+// Contenido editable desde el panel /admin (General y Contacto)
 import contacto from "../data/contacto.json";
+import raw from "../data/general.json";
+import { txt } from "../lib/texto";
+const g: any = raw;
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <div class="wrap footer__inner">
     <div class="footer__brand">
-      <span class="footer__name">Laura Mora</span>
-      <span class="footer__sub">Estética y micropigmentación · Sevilla</span>
+      {txt(g.marca_nombre) && <span class="footer__name">{g.marca_nombre}</span>}
+      {txt(g.pie_subtitulo) && <span class="footer__sub">{g.pie_subtitulo}</span>}
     </div>
 
     <nav class="footer__links" aria-label="Enlaces legales">
@@ -20,8 +23,8 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="wrap footer__foot">
-    <p>{contacto.registro_sanitario}</p>
-    <p>© {year} Laura Mora. Todos los derechos reservados.</p>
+    {txt(contacto.registro_sanitario) && <p>{contacto.registro_sanitario}</p>}
+    <p>© {year} {g.marca_nombre}. {g.pie_derechos}</p>
   </div>
 </footer>
 

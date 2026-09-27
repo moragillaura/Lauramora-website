@@ -23,112 +23,217 @@ site_url: https://lauramoramicropigmentacion.com
 display_url: https://lauramoramicropigmentacion.com
 
 collections:
-  # ---- Contacto y datos del estudio -------------------------------
-  - name: contacto
-    label: "Contacto y datos del estudio"
+  # Una entrada por sección, en el mismo orden que la web.
+  # Todos los campos son opcionales: lo que se deja vacío no se muestra.
+  - name: web
+    label: "Textos de la web"
+    label_singular: "Sección"
     files:
-      - name: contacto
-        label: "Datos de contacto"
-        file: "src/data/contacto.json"
+      - name: general
+        label: "General (menú, pie y Google)"
+        file: "src/data/general.json"
         fields:
-          - { name: whatsapp, label: "Enlace de WhatsApp", widget: string, hint: "Formato: https://wa.me/34XXXXXXXXX" }
-          - { name: booking_url, label: "Enlace para pedir cita", widget: string, hint: "WhatsApp o tu sistema de reservas (Booksy, etc.)" }
-          - { name: telefono_texto, label: "Teléfono (como se muestra)", widget: string }
-          - { name: instagram, label: "Enlace de Instagram", widget: string }
-          - { name: instagram_handle, label: "Usuario de Instagram", widget: string, hint: "Ej.: @lauramora.brows" }
-          - { name: direccion_linea1, label: "Dirección (línea 1)", widget: string }
-          - { name: direccion_linea2, label: "Dirección (línea 2)", widget: string }
-          - { name: horario_dias, label: "Horario · días", widget: string }
-          - { name: horario_horas, label: "Horario · horas", widget: string }
-          - { name: registro_sanitario, label: "Texto de registro sanitario", widget: string }
-          - { name: map_lat, label: "Mapa · latitud", widget: number, value_type: float, hint: "Ej.: 37.38859" }
-          - { name: map_lng, label: "Mapa · longitud", widget: number, value_type: float, hint: "Ej.: -5.99534" }
-          - { name: map_zoom, label: "Mapa · zoom", widget: number, value_type: int, default: 15 }
-          - { name: como_llegar_url, label: "Enlace 'Cómo llegar'", widget: string }
-
-  # ---- Servicios y precios ----------------------------------------
-  - name: servicios
-    label: "Servicios y precios"
-    files:
+          - { name: marca_nombre, label: "Nombre", widget: string, required: false }
+          - { name: marca_subtitulo, label: "Subtítulo bajo el nombre (arriba)", widget: string, required: false }
+          - { name: seo_titulo, label: "Título en Google y en la pestaña", widget: string, required: false, hint: "Unos 60 caracteres." }
+          - { name: seo_descripcion, label: "Descripción en Google", widget: text, required: false, hint: "Unos 150 caracteres." }
+          - name: menu
+            label: "Menú"
+            label_singular: "Enlace"
+            widget: list
+            required: false
+            summary: "{{fields.texto}}"
+            fields:
+            - { name: texto, label: "Texto del enlace", widget: string, required: false }
+            - { name: seccion, label: "Lleva a", widget: select, required: false, options: [{ label: "Qué es", value: "#que-es" }, { label: "El proceso", value: "#proceso" }, { label: "Servicios", value: "#servicios" }, { label: "Sobre mí", value: "#sobre-mi" }, { label: "Resultados", value: "#resultados" }, { label: "Opiniones", value: "#testimonios" }, { label: "Formaciones", value: "#formacion" }, { label: "Preguntas", value: "#preguntas" }, { label: "Reservar", value: "#reservar" }, { label: "Contacto", value: "#contacto" }] }
+          - { name: menu_boton, label: "Botón del menú", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: barra_movil_texto, label: "Texto de la barra fija en el móvil", widget: string, required: false }
+          - { name: pie_subtitulo, label: "Pie de página · subtítulo", widget: string, required: false }
+          - { name: pie_derechos, label: "Pie de página · derechos", widget: string, required: false }
+      - name: hero
+        label: "1 · Portada"
+        file: "src/data/hero.json"
+        fields:
+          - { name: etiqueta, label: "Etiqueta pequeña", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: titulo_cursiva, label: "Final del título en cursiva", widget: string, required: false, hint: "Se añade al final del título, en letra cursiva." }
+          - { name: texto, label: "Texto", widget: text, required: false }
+          - { name: boton_principal, label: "Botón principal (lleva a Reservar)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: boton_secundario, label: "Botón secundario (lleva a El proceso)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: frase_confianza, label: "Frase bajo los botones", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: foto_descripcion, label: "Descripción de la foto", widget: string, required: false, hint: "Para buscadores y personas ciegas. Describe lo que se ve." }
+          - { name: foto_pie_nombre, label: "Pie de foto · nombre", widget: string, required: false }
+          - { name: foto_pie_cargo, label: "Pie de foto · cargo", widget: string, required: false }
+      - name: que_es
+        label: "2 · Qué es"
+        file: "src/data/que-es.json"
+        fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: texto, label: "Texto", widget: text, required: false, hint: "Deja una línea en blanco entre párrafos." }
+          - name: puntos
+            label: "Puntos destacados"
+            label_singular: "Punto"
+            widget: list
+            required: false
+            summary: "{{fields.titulo}}"
+            fields:
+            - { name: titulo, label: "Título", widget: string, required: false }
+            - { name: texto, label: "Texto", widget: text, required: false }
+      - name: proceso
+        label: "3 · El proceso"
+        file: "src/data/proceso.json"
+        description: "Los números de los pasos (01, 02…) se ponen solos según el orden."
+        fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: texto, label: "Texto bajo el título", widget: text, required: false }
+          - name: pasos
+            label: "Pasos"
+            label_singular: "Paso"
+            widget: list
+            required: false
+            summary: "{{fields.titulo}}"
+            fields:
+            - { name: titulo, label: "Título", widget: string, required: false }
+            - { name: texto, label: "Texto", widget: text, required: false }
+            - { name: duracion, label: "Duración", widget: string, required: false, hint: "Ej.: 45 min. Si lo dejas vacío, no se muestra." }
       - name: servicios
-        label: "Lista de servicios"
+        label: "4 · Servicios y precios"
         file: "src/data/servicios.json"
         fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
           - name: items
             label: "Servicios"
-            widget: list
             label_singular: "Servicio"
-            summary: "{{fields.t}} — {{fields.price}}"
-            fields:
-              - { name: t, label: "Nombre del servicio", widget: string }
-              - { name: d, label: "Descripción", widget: text }
-              - { name: price, label: "Precio", widget: string, hint: "Ej.: desde 250 €" }
-              - { name: incluye, label: "Qué incluye", widget: string }
-
-  # ---- Preguntas frecuentes ---------------------------------------
-  - name: faq
-    label: "Preguntas frecuentes"
-    files:
-      - name: faq
-        label: "Lista de preguntas"
-        file: "src/data/faq.json"
-        fields:
-          - name: items
-            label: "Preguntas"
             widget: list
-            label_singular: "Pregunta"
-            summary: "{{fields.q}}"
+            required: false
+            summary: "{{fields.t}}"
             fields:
-              - { name: q, label: "Pregunta", widget: string }
-              - { name: a, label: "Respuesta", widget: text }
-
-  # ---- Formaciones (para profesionales) ---------------------------
-  - name: formacion
-    label: "Formaciones (profesionales)"
-    files:
-      - name: formacion
-        label: "Sección de formaciones"
-        file: "src/data/formacion.json"
+            - { name: t, label: "Nombre del servicio", widget: string, required: false }
+            - { name: d, label: "Descripción", widget: text, required: false }
+            - { name: price, label: "Precio", widget: string, required: false, hint: "Ej.: desde 250 €. Si lo dejas vacío, no se muestra." }
+            - { name: incluye, label: "Qué incluye", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: nota_final, label: "Nota bajo los servicios", widget: text, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: nota_enlace, label: "Texto del enlace a contacto", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+      - name: sobre_mi
+        label: "5 · Sobre mí"
+        file: "src/data/sobre-mi.json"
         fields:
-          - { name: kicker, label: "Etiqueta pequeña", widget: string }
-          - { name: titulo, label: "Título", widget: string }
-          - { name: texto, label: "Texto", widget: text }
-          - { name: cta_texto, label: "Texto del botón", widget: string }
-          - { name: modalidades, label: "Modalidades", widget: list, field: { name: modalidad, label: "Modalidad", widget: string } }
-
-  # ---- Opiniones de clientas ---------------------------------------
-  - name: testimonios
-    label: "Opiniones de clientas"
-    files:
-      - name: testimonios
-        label: "Lista de opiniones"
-        file: "src/data/testimonios.json"
-        fields:
-          - name: items
-            label: "Opiniones"
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: texto, label: "Texto", widget: text, required: false, hint: "Deja una línea en blanco entre párrafos." }
+          - name: garantias
+            label: "Garantías (lista con círculos)"
+            label_singular: "Garantía"
             widget: list
-            label_singular: "Opinión"
-            summary: "{{fields.nombre}}"
-            fields:
-              - { name: texto, label: "Opinión", widget: text }
-              - { name: nombre, label: "Nombre (ej.: Marta G.)", widget: string }
-              - { name: detalle, label: "Detalle (ej.: técnica)", widget: string, required: false }
-
-  # ---- Galería antes / después ------------------------------------
-  - name: galeria
-    label: "Galería antes / después"
-    files:
+            required: false
+            field: { name: item, label: "Garantía", widget: string, required: false }
+          - { name: foto_descripcion, label: "Descripción de la foto", widget: string, required: false, hint: "Para buscadores y personas ciegas. Describe lo que se ve." }
       - name: galeria
-        label: "Casos"
+        label: "6 · Resultados (antes / después)"
         file: "src/data/gallery.json"
+        description: "La sección solo aparece en la web cuando al menos un caso tiene foto."
         fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: texto, label: "Texto bajo el título", widget: text, required: false }
           - name: items
             label: "Casos"
-            widget: list
             label_singular: "Caso"
+            widget: list
+            required: false
             summary: "{{fields.nombre}}"
             fields:
-              - { name: nombre, label: "Título del caso", widget: string }
-              - { name: tecnica, label: "Técnica", widget: string }
-              - { name: before, label: "Foto ANTES", widget: image, required: false }
-              - { name: after, label: "Foto DESPUÉS", widget: image, required: false }
+            - { name: nombre, label: "Título del caso", widget: string, required: false }
+            - { name: tecnica, label: "Técnica", widget: string, required: false }
+            - { name: before, label: "Foto ANTES", widget: image, required: false }
+            - { name: after, label: "Foto DESPUÉS", widget: image, required: false }
+          - { name: nota_instagram, label: "Frase antes del enlace a Instagram", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+      - name: testimonios
+        label: "7 · Opiniones de clientas"
+        file: "src/data/testimonios.json"
+        fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - name: items
+            label: "Opiniones"
+            label_singular: "Opinión"
+            widget: list
+            required: false
+            summary: "{{fields.nombre}}"
+            fields:
+            - { name: texto, label: "Opinión", widget: text, required: false }
+            - { name: nombre, label: "Nombre (ej.: Marta G.)", widget: string, required: false }
+            - { name: detalle, label: "Detalle (ej.: técnica)", widget: string, required: false }
+      - name: formacion
+        label: "8 · Formaciones (profesionales)"
+        file: "src/data/formacion.json"
+        description: "Si dejas vacíos el título y el texto, la sección desaparece."
+        fields:
+          - { name: kicker, label: "Etiqueta pequeña", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: string, required: false }
+          - { name: texto, label: "Texto", widget: text, required: false, hint: "Deja una línea en blanco entre párrafos." }
+          - { name: cta_texto, label: "Texto del botón (lleva a Instagram)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - name: modalidades
+            label: "Modalidades"
+            label_singular: "Modalidad"
+            widget: list
+            required: false
+            field: { name: item, label: "Modalidad", widget: string, required: false }
+      - name: faq
+        label: "9 · Preguntas frecuentes"
+        file: "src/data/faq.json"
+        fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: texto, label: "Texto bajo el título", widget: text, required: false }
+          - name: items
+            label: "Preguntas"
+            label_singular: "Pregunta"
+            widget: list
+            required: false
+            summary: "{{fields.q}}"
+            fields:
+            - { name: q, label: "Pregunta", widget: string, required: false }
+            - { name: a, label: "Respuesta", widget: text, required: false }
+      - name: reserva
+        label: "10 · Reservar"
+        file: "src/data/reserva.json"
+        fields:
+          - { name: etiqueta, label: "Etiqueta pequeña (encima del título)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: titulo, label: "Título", widget: text, required: false, hint: "Pulsa Intro para partir el título en varias líneas." }
+          - { name: texto, label: "Texto", widget: text, required: false }
+          - { name: boton, label: "Botón (abre el enlace para pedir cita)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - name: pasos
+            label: "Pasos"
+            label_singular: "Paso"
+            widget: list
+            required: false
+            summary: "{{fields.titulo}}"
+            fields:
+            - { name: titulo, label: "Título", widget: string, required: false }
+            - { name: texto, label: "Texto", widget: text, required: false }
+      - name: contacto
+        label: "11 · Contacto y datos del estudio"
+        file: "src/data/contacto.json"
+        fields:
+          - { name: seccion_etiqueta, label: "Etiqueta pequeña", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: seccion_titulo, label: "Título", widget: string, required: false }
+          - { name: boton_cita, label: "Botón 'Pedir cita'", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: boton_llegar, label: "Botón 'Cómo llegar'", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: whatsapp, label: "Enlace de WhatsApp", widget: string, required: false, hint: "Formato: https://wa.me/34XXXXXXXXX" }
+          - { name: booking_url, label: "Enlace para pedir cita", widget: string, required: false, hint: "WhatsApp o tu sistema de reservas (Booksy, etc.). Lo usan todos los botones de reserva." }
+          - { name: telefono_texto, label: "Teléfono (como se muestra)", widget: string, required: false }
+          - { name: instagram, label: "Enlace de Instagram", widget: string, required: false }
+          - { name: instagram_handle, label: "Usuario de Instagram", widget: string, required: false, hint: "Ej.: @lauramora.brows" }
+          - { name: direccion_linea1, label: "Dirección (línea 1)", widget: string, required: false }
+          - { name: direccion_linea2, label: "Dirección (línea 2)", widget: string, required: false }
+          - { name: horario_dias, label: "Horario · días", widget: string, required: false }
+          - { name: horario_horas, label: "Horario · horas", widget: string, required: false }
+          - { name: registro_sanitario, label: "Texto de registro sanitario (pie de página)", widget: string, required: false, hint: "Si lo dejas vacío, no se muestra." }
+          - { name: map_lat, label: "Mapa · latitud", widget: number, required: false, hint: "Ej.: 37.38859", value_type: float }
+          - { name: map_lng, label: "Mapa · longitud", widget: number, required: false, hint: "Ej.: -5.99534", value_type: float }
+          - { name: map_zoom, label: "Mapa · zoom", widget: number, required: false, value_type: int, default: 15 }
+          - { name: como_llegar_url, label: "Enlace 'Cómo llegar'", widget: string, required: false }
